@@ -58,7 +58,7 @@ export default function BillForm({ accessToken }: { accessToken: string }) {
         consumerNumber: generateConsumerNumber()
       }));
     }
-  }, []);
+  }, [formData.consumerNumber]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,15 +79,17 @@ export default function BillForm({ accessToken }: { accessToken: string }) {
       };
   
       await appendToSheet(accessToken, [
-        referenceId,
-        timestamp,
-        formData.consumerNumber,
-        formData.customerName,
-        formData.customerMobile,
-        formData.billType,
-        formData.provider,
-        formData.amount,
-        "Success"
+        [
+          referenceId,
+          timestamp,
+          formData.consumerNumber,
+          formData.customerName,
+          formData.customerMobile,
+          formData.billType,
+          formData.provider,
+          formData.amount,
+          "Success"
+        ]
       ]);
   
       // Generate and print PDF
