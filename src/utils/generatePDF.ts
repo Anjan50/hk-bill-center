@@ -1,4 +1,5 @@
 import html2pdf from 'html2pdf.js';
+import { jsPDF } from 'jspdf';
 
 interface BillData {
   receiptId: string;
@@ -100,7 +101,7 @@ export const generatePDF = (billData: BillData) => {
     .from(container)
     .toPdf()
     .get('pdf')
-    .then((pdf: any) => {
+    .then((pdf: jsPDF) => {
       document.body.removeChild(container);
       
       // Auto print
